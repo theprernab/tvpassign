@@ -64,7 +64,7 @@ public class LoadBalMyServer
                 }
                 else
                 {
-                	Socket socket2 = new Socket(servers[serverChoose%2], 1268);
+                	Socket socket2 = new Socket(servers[serverChoose%2], 1267);
                 	PrintWriter   out2 = new PrintWriter(socket2.getOutputStream(), true);
                 	BufferedReader  in2 = new BufferedReader(new InputStreamReader(socket2.getInputStream()));
    	                	System.out.println("server 1");
