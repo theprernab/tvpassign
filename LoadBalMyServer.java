@@ -2,9 +2,7 @@ import javax.print.DocFlavor;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.*;
-/*
- * Created by jayant on 1/7/17.
- */
+
 public class LoadBalMyServer 
 {
 	public static void main(String[] args) throws Exception
@@ -38,7 +36,7 @@ public class LoadBalMyServer
 				String fileName = line1.substring(4,end-1);
 				System.out.println(fileName + " <-------- ");
                 //String[] servers= {"127.0.0.1","127.0.0.1"}; // temporarily changing
-                String[] servers= {"10.0.0.2","10.0.0.3"}; // temporarily changing
+               String[] servers= {"10.0.0.2","10.0.0.3"}; // temporarily changing
                 if(serverChoose%2 == 0)
                 {
                 	Socket socket1 = new Socket(servers[serverChoose%2], 1267);
@@ -53,7 +51,8 @@ public class LoadBalMyServer
                 	out.println(fileName);
                 	 String recv = in.readLine();
                 	 System.out.println("Text received: " + recv);
-
+                	 double rev=Double.parseDouble(recv);
+                	 rev=rev*1;
                    //out.println(fileName);
                 	// outToClient.write("server 1");
                 	 outToClient.println(recv);
@@ -67,21 +66,23 @@ public class LoadBalMyServer
                 	Socket socket2 = new Socket(servers[serverChoose%2], 1267);
                 	PrintWriter   out2 = new PrintWriter(socket2.getOutputStream(), true);
                 	BufferedReader  in2 = new BufferedReader(new InputStreamReader(socket2.getInputStream()));
-   	                	System.out.println("server 1");
+   	                	System.out.println("server 2");
 
                 	String serveraddr = "";
                 	serveraddr = servers[serverChoose%2];
-                	int portNo = 1268;
+                	int portNo = 1267;
                 	serverChoose++;
                 	serveraddr += fileName;
                 	out2.println(fileName);
                 	 String recv2 = in2.readLine();
                 	 System.out.println("Text received: " + recv2);
+                	 double rev2=Double.parseDouble(recv2);
+                	 rev2=rev2*2;
 
                    //out.println(fileName);
                 	
                 	// outToClient.write("server 2");
-                	outToClient.println(recv2);
+                	outToClient.println(rev2);
 
                 	System.out.println(serveraddr); 
                 	socket2.close();
