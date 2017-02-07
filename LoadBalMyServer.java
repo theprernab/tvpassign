@@ -35,7 +35,7 @@ public class LoadBalMyServer
 				int end = line1.indexOf("HTTP");
 				String fileName = line1.substring(4,end-1);
 				System.out.println(fileName + " <-------- ");
-                //String[] servers= {"127.0.0.1","127.0.0.1"}; // temporarily changing
+               // String[] servers= {"127.0.0.1","127.0.0.1"}; // temporarily changing
                String[] servers= {"10.0.0.2","10.0.0.3"}; // temporarily changing
                 if(serverChoose%2 == 0)
                 {
