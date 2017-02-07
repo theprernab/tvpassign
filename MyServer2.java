@@ -3,7 +3,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.*;
 
-public class MyServer2 
+public class MyServer2
 {
     public static void main(String[] args) throws Exception
     {
@@ -20,8 +20,8 @@ public class MyServer2
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 DataOutputStream outToClient = new DataOutputStream(clientSocket.getOutputStream());
-                PrintWriter   out = new PrintWriter(clientSocket.getOutputStream(), true);
-                 String line="";
+                PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+                String line="";
                 String line1 = "";
                 line1 = reader.readLine();
                 System.out.println(line1);
@@ -30,38 +30,50 @@ public class MyServer2
                 int x2 = line1.indexOf("&");
                 String s1=line1.substring(x1+1,x2);
                 x1=line1.lastIndexOf("=");
-                int l=line1.length();
-                String s2=line1.substring(x1+1,l);
+                int l;
+                String s2;
+                if(line1.contains("HTTP"))
+                {
+
+                    l=line1.indexOf("HTTP");
+                    s2=line1.substring(x1+1,l-1);
+                }
+                else{
+                    l=line1.length();
+                    s2=line1.substring(x1+1,l);
+                }
                 //System.out.println(x1+"  "+l+" "+s1+" "+s2);
                 int num1=Integer.parseInt(s1);
                 int num2=Integer.parseInt(s2);
                 System.out.println(num1+" "+num2);
                 double n1=Math.log(num1);
                 double n2=Math.log(num2);
-                String tosend="";
+                String tosend1="";
                 if(n1>0 && n2>0)
                 {
                     double output=n1/n2;
-                    tosend=Double.toString(output);
+                    tosend1=Double.toString(output);
                 }   
                 else
                 {
-                     tosend="NaN";
+                     tosend1="NaN";
 
                 }
-                String line="";
-                String line1 = "";
-                line1 = reader.readLine();
-                System.out.println(line1);
+                //String tosend = "haan mil gya i m server 1";
                 OutputStream os = clientSocket.getOutputStream();
                 OutputStreamWriter osw = new OutputStreamWriter(os);
                 BufferedWriter bw = new BufferedWriter(osw);
 
-                bw.write(tosend);
-                System.out.println("Message sent to the client is "+tosend);
+
+
+                bw.write(tosend1);
+                System.out.println("Message sent to the client is "+tosend1);
                 bw.flush();
                
-               //out.println("haan mil gya i m server 2");
+               // outToClient.write(tosend, 0, 100);
+                //out.println();
+                
+
                 // int x1 = fileName.lastIndexOf("/");
                 // int x2 = fileName.indexOf("/");
 /*                if (x1 == x2)
@@ -90,3 +102,4 @@ public class MyServer2
         }
     }
 }
+

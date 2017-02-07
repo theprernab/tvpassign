@@ -30,8 +30,19 @@ public class MyServer1
                 int x2 = line1.indexOf("&");
                 String s1=line1.substring(x1+1,x2);
                 x1=line1.lastIndexOf("=");
-                int l=line1.length();
-                String s2=line1.substring(x1+1,l);
+                int l;
+                String s2;
+                if(line1.contains("HTTP"))
+                {
+
+                    l=line1.indexOf("HTTP");
+                    s2=line1.substring(x1+1,l-1);
+                }
+                else{
+                    l=line1.length();
+                    s2=line1.substring(x1+1,l);
+                }
+                
                 //System.out.println(x1+"  "+l+" "+s1+" "+s2);
                 int num1=Integer.parseInt(s1);
                 int num2=Integer.parseInt(s2);
