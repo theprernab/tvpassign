@@ -7,7 +7,7 @@ public class MyServer2
 {
     public static void main(String[] args) throws Exception
     {
-        ServerSocket server = new ServerSocket(1268);
+        ServerSocket server = new ServerSocket(80);
         System.out.println("Listening on port 1268 ....");
         int i = 1;
         int serverChoose = 0;

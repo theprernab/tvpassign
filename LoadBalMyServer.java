@@ -7,7 +7,7 @@ public class LoadBalMyServer
 {
 	public static void main(String[] args) throws Exception
 	{
-		ServerSocket server = new ServerSocket(1265);
+		ServerSocket server = new ServerSocket(80);
 		System.out.println("Listening on port 1265 ....");
 		int i = 1;
 		int serverChoose = 0;
@@ -39,7 +39,7 @@ public class LoadBalMyServer
                String[] servers= {"10.0.0.2","10.0.0.3"}; // temporarily changing
                 if(serverChoose%2 == 0)
                 {
-                	Socket socket1 = new Socket(servers[serverChoose%2], 1267);
+                	Socket socket1 = new Socket(servers[serverChoose%2], 80);
                 	 PrintWriter out = new PrintWriter(socket1.getOutputStream(), true);
      					BufferedReader in = new BufferedReader(new InputStreamReader(socket1.getInputStream()));
                 	System.out.println("server 1");
@@ -63,7 +63,7 @@ public class LoadBalMyServer
                 }
                 else
                 {
-                	Socket socket2 = new Socket(servers[serverChoose%2], 1267);
+                	Socket socket2 = new Socket(servers[serverChoose%2], 80);
                 	PrintWriter   out2 = new PrintWriter(socket2.getOutputStream(), true);
                 	BufferedReader  in2 = new BufferedReader(new InputStreamReader(socket2.getInputStream()));
    	                	System.out.println("server 2");
