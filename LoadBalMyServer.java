@@ -45,7 +45,7 @@ public class LoadBalMyServer
                 	System.out.println("server 1");
                 	String serveraddr = "";
                 	serveraddr = servers[serverChoose%2];
-                	int portNo = 1267;
+                	int portNo = 80;
                 	serverChoose++;
                 	serveraddr += fileName;
                 	out.println(fileName);
@@ -70,7 +70,7 @@ public class LoadBalMyServer
 
                 	String serveraddr = "";
                 	serveraddr = servers[serverChoose%2];
-                	int portNo = 1267;
+                	int portNo = 80;
                 	serverChoose++;
                 	serveraddr += fileName;
                 	out2.println(fileName);
